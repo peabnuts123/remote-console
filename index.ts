@@ -40,7 +40,7 @@ function validateLogBody(request: express.Request, response: express.Response, n
 
   let payload: any = request.body;
 
-  log(payload);
+  log(`Received request:`, payload);
 
   // Validation
   if (typeof payload.message !== 'string') {
@@ -140,7 +140,7 @@ function logErrorToConnectedClients(message: string) {
  * @param payload Data to be sent to connected clients
  */
 function sendPayloadToConnectedClients(payload: any) {
-  log(`Sending payload to ${connectedClients.length} connected clients:\n`, JSON.stringify(payload, null, 2));
+  log(`Sending payload to ${connectedClients.length} connected clients.`);
 
   connectedClients.forEach((ws) => {
     ws.send(JSON.stringify(payload), (error) => {

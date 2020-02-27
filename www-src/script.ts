@@ -65,4 +65,8 @@ $(() => {
     $console.scrollTop($console.height() as number);
   }
 
+  // Ensure websocket is closed before leaving the page
+  window.onbeforeunload = function () {
+    ws.close();
+  };
 });
