@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Remote Console</title>
+
+  <link rel="stylesheet" href="style.scss">
+</head>
+
+<body>
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-4">Remote console</h1>
+      <p class="lead">Send traffic to the server and have it logged on this page, in real time.</p>
+
+      <hr class="my-4">
+
+      <p>There are three endpoints for sending log traffic to:</p>
+      <ul>
+        <li><code>/log</code> - Normal logs, akin to <code>console.log</code></li>
+        <li><code>/log-warning</code> - Warning logs, akin to <code>console.warn</code></li>
+        <li><code>/log-error</code> - Error logs, akin to <code>console.error</code></li>
+      </ul>
+
+      <p>All endpoints expect a JSON paylaod in the format of:</p>
+<pre><code>{
+  "message": "hello world"
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Console:</h2>
+
+    <code class="Console" id="console"></code>
+  </div>
+
+  <script src="script.ts"></script>
+</body>
+
+</html>
