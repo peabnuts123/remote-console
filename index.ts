@@ -1,4 +1,6 @@
 import express from 'express';
+import cors from 'cors';
+
 import * as WebSocket from 'ws';
 
 
@@ -11,14 +13,14 @@ let connectedClients: WebSocket[] = [];
 // Whenever a websocket connection is made
 wss.on('connection', function connection(ws: WebSocket) {
   // Add new socket to list of connected sockets
-  log("New client connected");
   connectedClients.push(ws);
+  log(`New client connected (${connectedClients.length})`);
 
   // WebSocket disconnect
   ws.on("close", function onClose() {
-    log("Client disconnected");
     // Remove from list of connected clients
     connectedClients.splice(connectedClients.indexOf(ws));
+    log(`Client disconnected (${connectedClients.length})`);
   });
 });
 
@@ -27,8 +29,10 @@ wss.on('connection', function connection(ws: WebSocket) {
 const app = express();
 
 // Serve directory as static site
+app.use(cors());
 app.use(express.static('www'));
 app.use(express.json());
+
 /**
  * Express middleware for shared validation logic for
  * log endpoints
