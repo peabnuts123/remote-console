@@ -11,7 +11,7 @@ const MESSAGE_CLASSES = {
 $(() => {
 
   const $console = $('#console');
-  const ws = new WebSocket('ws://localhost:8081');
+  const ws = new WebSocket(`ws://${location.hostname}:8081`);
 
   let userHasScrolledBack = false;
 
